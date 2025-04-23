@@ -19,12 +19,17 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import TokenRefreshView
 
-from users.views import UserViewSet
+from users.views import UserViewSet, LoginView
 from portfolio.views import ResumeViewSet, ExperienceViewSet, EducationViewSet, SkillViewSet, ProjectViewSet
 from blog.views import PostViewSet, CommentViewSet
 from artifacts.views import ArtifactViewSet
+
+# Customize admin site
+admin.site.site_header = 'Foliance Administration'
+admin.site.site_title = 'Foliance Admin Portal'
+admin.site.index_title = 'Welcome to Foliance Administration'
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -40,6 +45,6 @@ router.register(r'artifacts', ArtifactViewSet, basename='artifact')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', LoginView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

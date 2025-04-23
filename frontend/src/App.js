@@ -8,6 +8,7 @@ import { getCurrentUser } from './store/slices/authSlice';
 import Layout from './components/Layout';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Editor from './pages/Editor';
 import PublicProfile from './pages/PublicProfile';
@@ -26,6 +27,10 @@ const AppContent = () => {
     <Routes>
       <Route path="/login" element={
         isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login />
+      } />
+      
+      <Route path="/register" element={
+        isAuthenticated ? <Navigate to="/dashboard" replace /> : <Register />
       } />
       
       <Route path="/dashboard" element={

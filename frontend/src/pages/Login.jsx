@@ -89,6 +89,19 @@ const Login = () => {
               {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </div>
+
+          <div className="text-center">
+            <p className="text-sm text-foliance-dark-gray">
+              Don't have an account?{' '}
+              <button
+                type="button"
+                onClick={() => navigate('/register')}
+                className="font-medium text-foliance-blue hover:text-foliance-blue-dark"
+              >
+                Create one now
+              </button>
+            </p>
+          </div>
         </form>
       </div>
     </div>
